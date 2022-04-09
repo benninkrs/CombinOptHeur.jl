@@ -24,7 +24,7 @@ QAP problems are solved using a novel adaptation of the Boros 2007 algorithm.  T
 ## Installation
 In the Julia terminal, enter package mode (type `]`) and enter
 
-```add https\\github\benninkrs\CombinOptHeuristics.jl```
+```add https://github.com/benninkrs/CombinOptHeuristics.jl```
 
 
 ## Usage
