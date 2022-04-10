@@ -3,7 +3,7 @@
 
 - The types `QUBO` and `QAP` respectively represent quadratic unconstrained binary optimization (QUBO) problems and quadratic assignment problems (QAP).
 - Convenience functions `ising`, `maxcut`, and `travsales` facilitate the construction of Ising energy minimization, MAXCUT, and travelling salesperson problems.
-- The `solve` function generates heuristic solutions for a given problem.
+- The `solve` function generates heuristic solutions for a given problem. (QAP solvers are not yet implemented.)
 
 More details can be found in the source documentation.
 
@@ -65,4 +65,4 @@ Currently, solvers are provided for two types of problems:
 
 QUBO problems are solved by a variant of the method described in [Boros2007].  In this approach the search space is relaxed to a continuous domain. Starting from a random point in the interior of the domain, the components of a candidate solution $x$ are progressively discretized using a greedy heuristic until a local optimum is reached. This search is fast, scaling as $O(n^2)$, and has a high probability of generating a pretty good solution. In practice one typically generates a large number of candidate solutions and selects the best one.
 
-QAP problems are solved using a novel adaptation of the Boros 2007 algorithm.  The space of permutation matrices is relaxed to the space of approximately doubly-stochastic matrices.  Starting from a random initial matrix, a candidate matrix is progressively discretized into a permutation matrix using a greedy heuristic until a local optimum is reached. The cost of generating a single candidate solution is $O(n^3)$.  Again, many candidate solutions are generated.
+QAP solvers are not yet implemented.
