@@ -29,7 +29,9 @@ julia> q([1,0,1])
 -7.8
 
 # find a good solution
-julia> (f,x) = solve(q, 100)            
+julia> (f,x) = solve(q, 100) 
+Progress: 100%|████████████████████████████████████████████████████| Time: 0:00:00
+  Best:  11.3           
 (11.3, [0.0, 1.0, 1.0])
 
 julia> q(x)                             
@@ -39,12 +41,23 @@ julia> q(x)
 This example shows how to solve a benchmark problem:
 ```
 # read a MAXCUT problem from BiqBin
-julia> q = read_biqbin_maxcut("G1");    
+julia> q = read_biqbin_maxcut("G1");
 
 julia> (f,x) = solve(q,100)
-(11540.0, [0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0  …  0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0])
+Progress: 100%|████████████████████████████████████████████████████| Time: 0:00:05
+  Best:  11539.0
+(11539.0, [0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0  …  0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0])
 ```
-Because the heuristic is randomized, the results may be slightly different.
+(Because the heuristic is randomized, you may obtain a slightly different result.)
+
+The function `predict` quickly and cheaply predicts the optimal value based on the problem parameters:
+```
+julia> q = read_biqbin_maxcut("G1");
+
+julia> predict(q)
+11546.366666382983
+```
+
 
 ## Technical Details
 

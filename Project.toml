@@ -1,9 +1,10 @@
 name = "CombinOptHeuristics"
 uuid = "07321f72-b8d2-434f-ba03-896a4827b344"
 authors = ["Ryan Bennink <benninkrs@ornl.gov>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
