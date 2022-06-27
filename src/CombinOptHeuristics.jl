@@ -1,10 +1,9 @@
 """
 Heuristic solvers for cominbatorial optimization problems, in particular:
   • Quadratic unconstrained binary optimization (QUBO)
-  • Quadratic assignment (QAP)
-
-This includes the following as special cases:  Ising energy minimization, MAXCUT, MAXSAT, and travelling salesman.
-Many other combinatorial problems can be reduced to one of these two.
+ 
+This includes the following as special cases:  Ising energy minimization, MAXCUT, and MAXSAT.
+Many other combinatorial problems can be reduced to QUBO.
 """
 module CombinOptHeuristics
 

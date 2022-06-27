@@ -1,9 +1,9 @@
 # CombinOptHeuristics.jl
-**CombinOptHeuristics** provides heuristic solvers for combinatorial optimization. It additionally provides types and constructors to for problem instances and some standard benchmark problems.
+**CombinOptHeuristics** provides heuristic solvers for combinatorial optimization. It additionally provides types and constructors for problem instances, as well as some public domain benchmark problems. Currently only quadratic unconstrained binary optimization (QUBO) is supported, but the plan is to eventually support quadratic assignment problems (QAP) as well.
 
-- The types `QUBO` and `QAP` respectively represent quadratic unconstrained binary optimization (QUBO) problems and quadratic assignment problems (QAP).
-- Convenience functions `ising`, `maxcut`, and `travsales` facilitate the construction of Ising energy minimization, MAXCUT, and travelling salesperson problems.
-- The `solve` function generates heuristic solutions for a given problem. (QAP solvers are not yet implemented.)
+- The type `QUBO` represents a QUBO problem.
+- Convenience functions `ising` and `maxcut` facilitate the construction of Ising energy minimization and MAXCUT problems.
+- The `solve` function generates heuristic solutions for a given problem.
 
 More details can be found in the source documentation.
 
@@ -21,7 +21,7 @@ This example shows how to construct and solve a simple QUBO problem involving 3 
 julia> using CombinOptHeuristics
 
 # create a maximization QUBO problem over {0,1}^3
-julia> A = [0 3 -4; 3 0 6; -4 6 0]; b = [0.2, -0.7, 0]
+julia> A = [0 3 -4; 3 0 6; -4 6 0]; b = [0.2, -0.7, 0];
 julia> q = QUBO(A, b, 0, (0,1), max);
 
 # evaluate the objective function at [1,0,1]
@@ -63,19 +63,11 @@ julia> predict(q)
 
 ### Problem Types
 
-Currently, solvers are provided for two types of problems: 
-
-- **Quadratic unconstrained binary optimization**  (QUBO).  The task is to maximize or minimize 
+Currently, solvers are provided only for quadratic unconstrained binary optimization (QUBO), which is the task of maximizing or minimizing 
   $$  f(x) = x^T A x + b^T x + c $$
   over $x \in \{\text{lo},\text{hi}\}^n$, where $\{\text{lo},\text{hi}\}$  is typically either $\{0,1\}$ or $\{-1,1\}$. Specialized types of QUBO include MAXCUT, MAXSAT, and Ising energy minimization. 
 
-- **Quadratic assignment problem** (QAP). The task is to maximize or minimize
-  $$ f(p) = \sum_{{i,j}=1}^n A_{i,j} B_{p_i,p_j} $$
-  over all permutations $p$ of $\{1,\ldots,n\}$. A well-known subtype of  QAP is the Travelling Salesperson Problem (TSP).
 
-
-### Algorithms
+### Algorithm
 
 QUBO problems are solved by a variant of the method described in [Boros2007].  In this approach the search space is relaxed to a continuous domain. Starting from a random point in the interior of the domain, the components of a candidate solution $x$ are progressively discretized using a greedy heuristic until a local optimum is reached. This search is fast, scaling as $O(n^2)$, and has a high probability of generating a pretty good solution. In practice one typically generates a large number of candidate solutions and selects the best one.
-
-QAP solvers are not yet implemented.
